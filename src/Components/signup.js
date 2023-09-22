@@ -17,6 +17,7 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(formData);
     try {
       const response = await fetch(
         "https://urlshort-et75.onrender.com/api/users/signup",
@@ -29,7 +30,7 @@ const Signup = () => {
         }
       );
 
-      if (response.status === 201) {
+      if (response) {
         console.log("Signup successful!");
         navigate("/");
       } else {

@@ -28,7 +28,7 @@ const Login = () => {
         }
       );
 
-      if (response.status === 200) {
+      if (response) {
         console.log("Login successful!");
         navigate("/dashboard");
         // Handle successful login (e.g., redirect to dashboard)
