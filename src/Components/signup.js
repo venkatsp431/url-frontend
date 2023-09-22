@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -9,7 +10,7 @@ const Signup = () => {
   });
 
   const { name, email, password } = formData;
-
+  const navigate = useNavigate();
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -17,16 +18,20 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:8000/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://urlshort-et75.onrender.com/api/users/signup",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (response.status === 201) {
         console.log("Signup successful!");
+        navigate("/");
       } else {
         console.error("Signup failed.");
       }

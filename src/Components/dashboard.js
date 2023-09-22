@@ -13,7 +13,7 @@ const Dashboard = () => {
     async function fetchStatistics() {
       try {
         const response = await fetch(
-          "http://localhost:8000/api/urlshort/statistics"
+          "https://urlshort-et75.onrender.com/api/urlshort/statistics"
         );
         const data = await response.json();
         const { urlsPerDay, urlsPerMonth, clickCounts } = data;
@@ -44,7 +44,7 @@ const Dashboard = () => {
   const handleShorten = async () => {
     try {
       const response = await fetch(
-        "http://localhost:8000/api/urlshort/shorten",
+        "https://urlshort-et75.onrender.com/api/urlshort/shorten",
         {
           method: "POST",
           headers: {

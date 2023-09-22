@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
-import { Link } from "react-router-dom"; // Assuming you're using React Router for navigation
+import { Link, useNavigate } from "react-router-dom"; // Assuming you're using React Router for navigation
 
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-
+  const navigate = useNavigate();
   const { email, password } = formData;
 
   const handleChange = (e) => {
@@ -17,16 +17,20 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:8000/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://urlshort-et75.onrender.com/api/users/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (response.status === 200) {
         console.log("Login successful!");
+        navigate("/dashboard");
         // Handle successful login (e.g., redirect to dashboard)
       } else {
         console.error("Login failed.");
